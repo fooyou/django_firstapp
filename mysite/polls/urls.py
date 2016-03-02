@@ -4,11 +4,12 @@
 # @Author: Joshua Liu
 # @Email: liuchaozhen@neusoft.com
 # @Create Date: 2016-03-02 09:03:39
-# @Last Modified: 2016-03-02 10:03:08
+# @Last Modified: 2016-03-02 11:03:14
 # @Description:
 from django.conf.urls import url
 from . import views
 
+app_name = 'polls'
 urlpatterns = [
         # ex: /polls/
         url(r'^$', views.index, name='index'),
