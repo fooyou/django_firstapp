@@ -4,7 +4,7 @@
 # @Author: Joshua Liu
 # @Email: liuchaozhenyu@gmail.com
 # @Create Date: 2016-03-02 09:03:48
-# @Last Modified: 2016-03-02 10:03:07
+# @Last Modified: 2016-03-02 10:03:47
 # @Description:
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -17,7 +17,7 @@ def index(request):
     context = {
             'latest_question_list': latest_question_list,
         }
-    return HttpResponse(template.render(context, request))
+    return render(request, 'polls/index.html', context)
 
 def detail(request, question_id):
     return HttpResponse("请看问题 %s." % question_id)
