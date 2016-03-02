@@ -4,16 +4,20 @@
 # @Author: Joshua Liu
 # @Email: liuchaozhenyu@gmail.com
 # @Create Date: 2016-03-02 09:03:48
-# @Last Modified: 2016-03-02 10:03:19
+# @Last Modified: 2016-03-02 10:03:07
 # @Description:
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Question
+from django.template import loader
 
 def index(request):
-    last_question_list = Question.objects.order_by('-pub_date')[:5]
-    output = '\n'.join([q.question_text for q in last_question_list])
-    return HttpResponse(output)
+    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    template = loader.get_template('polls/index.html')
+    context = {
+            'latest_question_list': latest_question_list,
+        }
+    return HttpResponse(template.render(context, request))
 
 def detail(request, question_id):
     return HttpResponse("请看问题 %s." % question_id)
